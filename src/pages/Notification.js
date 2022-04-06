@@ -14,7 +14,7 @@ const Notification = (porps) => {
   return (
     <React.Fragment>
       <Grid margin="70px"/>
-      <Grid padding="16px" bg="#EFF6FF">
+      <Grid padding="16px" bg="#F5F5F5">
         {noti.map((n) => {
           return (
             <Card key={n.post_id} {...n}/>

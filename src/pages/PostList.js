@@ -30,7 +30,7 @@ const PostList = (props) => {
   return (
     <React.Fragment>
       <Grid margin="85px"/>
-      <Grid bg="#EFF6FF" padding="8px 0px">
+      <Grid bg="#F5F5F5" padding="8px 0px">
         <InfinityScroll
           callNext={() => {
             // console.log("next!");
@@ -45,9 +45,7 @@ const PostList = (props) => {
                   bg="#ffffff"
                   margin="8px 0px"
                   key={p.id}
-                  onClick={() => {
-                      history.push(`/post/${p.id}`);
-                  }}>
+                  >
                   <Post key={p.id} {...p} is_me="is_me"/>
                 </Grid>
               )
@@ -57,9 +55,7 @@ const PostList = (props) => {
                   bg="#ffffff"
                   margin="8px 0px"
                   key={p.id}
-                  onClick={() => {
-                      history.push(`/post/${p.id}`);
-                  }}>
+                  >
                   <Post key={p.id} {...p}/>
                 </Grid>
                )

@@ -35,7 +35,7 @@ const Post = (props) => {
 
         {/* 글 내용 및 사진 */}
         {props.layout === "bottom" && (
-          <Grid width="auto" bg="#F8F8FF">
+          <Grid width="auto">
 
             <Grid padding="16px">
               <Text bold>{props.contents}</Text>
@@ -53,10 +53,10 @@ const Post = (props) => {
         )}
 
         {props.layout === "right" && (
-          <Grid width="auto" bg="#F8F8FF">       
+          <Grid width="auto">       
 
             <Grid is_flex padding="16px">
-              <Grid>
+              <Grid padding="5px 40px 0px 10px">
                 <Text bold>{props.contents}</Text>
               </Grid>
               <Grid>
@@ -66,7 +66,9 @@ const Post = (props) => {
 
             <Grid padding="16px" bg="#F5F5F5">
               <Text blod>❤️ Like. 3개</Text>
-              <Text bold>💌 댓글 {props.comment_cnt}개</Text>
+              <Text bold>💌 댓글 2개</Text>
+              <Text><strong>Jieun_feel</strong>&nbsp;&nbsp;&nbsp;코로나가 끝나면 반드시 해외여행..!</Text>
+              <Text><strong>Minji</strong>&nbsp;&nbsp;&nbsp;해외여행 가고싶다ㅠ..</Text>
             </Grid>
 
           </Grid>
@@ -74,13 +76,13 @@ const Post = (props) => {
 
 
         {props.layout === "left" && (
-          <Grid width="auto" bg="#F8F8FF"> 
+          <Grid width="auto" > 
 
             <Grid is_flex padding="16px">
               <Grid>
                 <Image half shape="rectangle" src={props.image_url}/>
               </Grid>
-              <Grid>
+              <Grid padding="5px 10px 0px 40px">
                 <Text bold>{props.contents}</Text>
               </Grid>
             </Grid>
