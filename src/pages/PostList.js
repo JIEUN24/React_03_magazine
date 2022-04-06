@@ -17,7 +17,9 @@ const PostList = (props) => {
   const paging = useSelector((state) => state.post.paging);
   // const layout = useSelector((state) => state.post.layout); 
   // console.log(layout)
-  console.log(post_list)
+  // console.log(post_list)
+  
+  const {history} = props;
 
   React.useEffect(() => {
     if(post_list.length === 0) {
@@ -27,25 +29,47 @@ const PostList = (props) => {
 
   return (
     <React.Fragment>
-     <Grid margin="85px"/>
-      <InfinityScroll
-        callNext={()=> {
-          // console.log("next!");
-          dispatch(postActions.getPostFB(paging.next));
-        }}
-        is_next={paging.next ? true : false}
-        loading={is_loading}
-      >
-        {post_list.map((p, idx) => {
-            if(p.user_info.user_id === user_info?.uid) {
-              return <Post key={p.id} {...p} is_me/>
-            }else{
-              return <Post key={p.id} {...p}/>
-            }
-          })}
-      </InfinityScroll>
+      <Grid margin="85px"/>
+      <Grid bg="#EFF6FF" padding="8px 0px">
+        <InfinityScroll
+          callNext={() => {
+            // console.log("next!");
+            dispatch(postActions.getPostFB(paging.next));
+          }}
+          is_next={paging.next ? true : false}
+          loading={is_loading}>
+          {post_list.map((p, idx) => {
+            if (p.user_info.user_id === user_info ?.uid) {
+              return (
+                <Grid
+                  bg="#ffffff"
+                  margin="8px 0px"
+                  key={p.id}
+                  onClick={() => {
+                      history.push(`/post/${p.id}`);
+                  }}>
+                  <Post key={p.id} {...p} is_me="is_me"/>
+                </Grid>
+              )
+            } else {
+              return (
+                <Grid
+                  bg="#ffffff"
+                  margin="8px 0px"
+                  key={p.id}
+                  onClick={() => {
+                      history.push(`/post/${p.id}`);
+                  }}>
+                  <Post key={p.id} {...p}/>
+                </Grid>
+               )
+              }
+            })
+          }
+        </InfinityScroll>
+      </Grid>
     </React.Fragment>
-  )
+)
 }
 
 export default PostList;

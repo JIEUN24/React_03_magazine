@@ -7,9 +7,8 @@ import { actionCreators as deleteActions } from "../redux/modules/post";
 
 const Post = (props) => {
 
-  console.log(props.contents)
-  console.log(props.layout)
-
+  // console.log(props.contents)
+  // console.log(props.layout)
 
   const dispatch = useDispatch();
   const deletePost = () => {

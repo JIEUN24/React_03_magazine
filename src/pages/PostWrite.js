@@ -24,7 +24,7 @@ const PostWrite = (props) => {
   const [contents, setContents] = useState(_post ? _post.contents : "");
   const [layout, setLayout] = useState(_post ? _post.layout : "bottom");
 
-  console.log(layout);
+  // console.log(layout);
 
   React.useEffect(() => {
     if(is_edit && !_post) {
