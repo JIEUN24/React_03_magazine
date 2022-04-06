@@ -45,6 +45,9 @@ const PostList = (props) => {
                   bg="#ffffff"
                   margin="8px 0px"
                   key={p.id}
+                  onClick={() => {
+                    history.push(`/post/${p.id}`)
+                  }}
                   >
                   <Post key={p.id} {...p} is_me="is_me"/>
                 </Grid>
@@ -55,6 +58,10 @@ const PostList = (props) => {
                   bg="#ffffff"
                   margin="8px 0px"
                   key={p.id}
+                  onClick={() => {
+                    history.push(`/post/${p.id}`);
+                    
+                  }}
                   >
                   <Post key={p.id} {...p}/>
                 </Grid>

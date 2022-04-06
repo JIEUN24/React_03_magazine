@@ -31,7 +31,7 @@ const Input = (props) => {
 }
 
 Input.defaultProps = {
-  label: "아이디",
+  label: null,
   type: "text",
   placeholder: null,
   wirte: false,

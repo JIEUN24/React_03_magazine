@@ -9,7 +9,7 @@ import PostWrite from "../pages/PostWrite";
 import Header from "../components/Header";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import PostDtail from "../pages/PostDetail";
+import PostDetail from "../pages/PostDetail";
 import Notification from "../pages/Notification";
 import Permit from "./Permit";
 import { Grid, Button } from "../elements";
@@ -43,7 +43,7 @@ function App() {
           <Route path='/signup' exact component={Signup}/>
           <Route path='/write' exact component={PostWrite}/>
           <Route path='/write/:id' exact component={PostWrite}/>
-          <Route path='post/:id' exact component={PostDtail}/>
+          <Route path='/post/:id' exact component={PostDetail}/>
           <Route path='/noti' exact component={Notification}/>
         </ConnectedRouter>
       </Grid>

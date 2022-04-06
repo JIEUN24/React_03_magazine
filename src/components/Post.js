@@ -11,7 +11,8 @@ const Post = (props) => {
   // console.log(props.layout)
 
   const dispatch = useDispatch();
-  const deletePost = () => {
+  const deletePost = (event) => {
+    event.stopPropagation();
     dispatch(deleteActions.deletePostFB(props.id));
   };
 
@@ -28,7 +29,11 @@ const Post = (props) => {
           {/* 수정 및 삭제버튼 */}
           <Grid is_flex width="auto">
             <Text>{props.insert_dt}</Text>
-            {props.is_me && <ButtonSt onClick={() => {history.push(`/write/${props.id}`)}}>수정</ButtonSt>}
+            {props.is_me && <ButtonSt
+            onClick={(event) => {
+              history.push(`/write/${props.id}`)
+              event.stopPropagation();
+              }}>수정</ButtonSt>}
             {props.is_me && <ButtonSt onClick={deletePost}>X</ButtonSt>}
           </Grid>
         </Grid>

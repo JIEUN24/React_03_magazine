@@ -48,7 +48,7 @@ const Header = (props) => {
             bold size="24px"
             onClick={() => {
               history.push('/')
-            }}>Instagram</Text>
+            }}>Hello, magazine</Text>
         </div>
         <div>
           <Button

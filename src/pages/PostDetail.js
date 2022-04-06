@@ -1,70 +1,54 @@
-// import React from "react";
-// import Post from "../components/Post";
-// // import CommentList from "../components/CommentList";
-// // import CommentWrite from "../components/CommentWrite";
+import React from "react";
+import { useSelector } from "react-redux";
+import { firestore } from "../shared/firebase";
+import Post from "../components/Post";
+import Comment from "../components/Comment";
+// import CommentList from "../components/CommentList";
+// import CommentWrite from "../components/CommentWrite";
 
-// import {useSelector} from "react-redux";
+const PostDetail = (props) => {
 
-// import {firestore} from "../shared/firebase";
+    const id = props.match.params.id;
 
-// const PostDetail = (props) => {
+    const user_info = useSelector((state) => state.user.user);
 
-//       console.log(props.match.params.id);
-//     const id = props.match.params.id;
+    const post_list = useSelector(store => store.post.list);
+    const post_idx = post_list.findIndex(p => p.id === id);
+    const post_data = post_list[post_idx];
+    const [post, setPost] = React.useState(post_data ? post_data : null);
 
-//     // 아이디가 안불러와짐
-//     console.log(id);
+    React.useEffect(() => {
+      const postDB = firestore.collection("post");
+      postDB.doc(id).get().then(doc => {
+        let _post = {
+          id: doc.id,
+          ...doc.data()
+        };
 
-//     const user_info = useSelector((state) => state.user.user);
+        let post = {
+          id: doc.id,
+          user_info: {
+            user_name: _post.user_name,
+            user_profile: _post.user_profile,
+            user_id: _post.user_id
+          },
+          image_url: _post.image_url,
+          contents: _post.contents,
+          comment_cnt: _post.comment_cnt,
+          layout:_post.layout,
+          insert_dt: _post.insert_dt,
+        };
 
-//     const post_list = useSelector(store => store.post.list);
-    
-//     const post_idx = post_list.findIndex(p => p.id === id);
-//     const post_data = post_list[post_idx];
+        setPost(post);
+      })
+    }, [])
 
-//     const [post, setPost] = React.useState(post_data? post_data : null);
+    return (
+      <React.Fragment>
+        {post && <Post {...post} is_me = {post.user_info.user_id === user_info.uid}/>}
+        <Comment/>
+      </React.Fragment>
+    );
+}
 
-
-//     React.useEffect(() => {
-
-//         if(post){
-//            return; 
-//         }
-        
-//         const postDB = firestore.collection("post");
-//         postDB.doc(id).get().then(doc => {
-//             console.log(doc);
-//             console.log(doc.data());
-            
-//             let _post = doc.data();
-//             let post = Object.keys(_post).reduce(
-//               (acc, cur) => {
-//                 if (cur.indexOf("user_") !== -1) {
-//                   return {
-//                     ...acc,
-//                     user_info: { ...acc.user_info, [cur]: _post[cur] },
-//                   };
-//                 }
-//                 return { ...acc, [cur]: _post[cur] };
-//               },
-//               { id: doc.id, user_info: {} }
-//             );
-
-//             setPost(post);
-//         })
-
-
-//     }, []);
-
-//     return (
-//       <React.Fragment>
-//         {post && (
-//           <Post {...post} is_me={post.user_info.user_id === user_info.uid} />
-//         )}
-//         {/* <CommentWrite />
-//         <CommentList /> */}
-//       </React.Fragment>
-//     );
-// }
-
-// export default PostDetail;
+export default PostDetail;

@@ -248,7 +248,7 @@ const deletePostFB = (post_id = null) => {
 
     postDB.doc(post_id).delete().then(() => {
       dispatch(deletePost(post_id));
-      history.push("/");
+      // history.replace("/");
     }).catch((err) => {
       console.log("실패!", err);
     })
@@ -275,8 +275,8 @@ export default handleActions(
       }),
 
       [DELETE_POST]: (state, action) => produce(state, (draft) => {
-        draft.list.filter((p) => p.id !== action.payload.post_id);
-        window.location.reload();
+        draft.list = draft.list.filter((p) => p.id !== action.payload.post_id);
+        // window.location.reload();
       }),
 
       [LOADING]: (state, action) => produce(state, (draft) => {
