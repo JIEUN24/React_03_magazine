@@ -10,6 +10,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 // 이메일 형식 체크
 import { emailCheck } from "../shared/Email";
+import { passwordCheck } from "../shared/Password";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -30,12 +31,17 @@ const Signup = (props) => {
       return;
     }
 
+    if(!passwordCheck(pwd)) {
+      alert("영문, 숫자 조합 8자리 이상 20자리 이하로 입력해주세요.")
+      return;
+    }
+
     if ( pwd !== pwd_check ) {
       alert('비밀번호가 일치하지 않습니다.')
       return;
     }
 
-    if ( pwd.length < 6 ) {
+    if ( pwd.length < 8 ) {
       alert('비밀번호가 너무 짧습니다.')
       return;
     }
@@ -58,7 +64,6 @@ const Signup = (props) => {
               // console.log(e.target.value);
             }}
           />
-          <P>이메일을 입력하세요.</P>
           
           <Input
             label="닉네임"
@@ -68,20 +73,16 @@ const Signup = (props) => {
               setUserName(e.target.value);
             }}
           />
-          <P>닉네임을 입력하세요.</P>
 
-          
           <Input
             label="비밀번호"
             type="password"
-            placeholder="비밀번호를 입력하세요."
+            placeholder="영문, 숫자 조합 8자리 이상 20자리 이하"
             onChange={(e) => {
               setPwd(e.target.value);
             }}
           />
-          <P>비밀번호를 입력하세요.</P>
 
-          
           <Input
             label="비밀번호 확인"
             type="password"
@@ -90,7 +91,6 @@ const Signup = (props) => {
               setPwdCheck(e.target.value);
             }}
           />
-          <P>비밀번호가 일치하지 않습니다.</P>
                       
           <Button position="bottom" text="회원가입하기" onClick={signup}></Button>
         </SignupSt>

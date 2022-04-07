@@ -61,7 +61,7 @@ const Post = (props) => {
           <Grid width="auto">       
 
             <Grid is_flex padding="16px">
-              <Grid padding="5px 40px 0px 10px">
+              <Grid padding="10px 40px 0px 10px">
                 <Text bold>{props.contents}</Text>
               </Grid>
               <Grid>
@@ -87,7 +87,7 @@ const Post = (props) => {
               <Grid>
                 <Image half shape="rectangle" src={props.image_url}/>
               </Grid>
-              <Grid padding="5px 10px 0px 40px">
+              <Grid padding="10px 10px 0px 40px">
                 <Text bold>{props.contents}</Text>
               </Grid>
             </Grid>
